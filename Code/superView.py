@@ -129,14 +129,14 @@ class Game(Frame):
             self.after(200)
 
     # Was passiert, wenn das Spiel beendet wird
-    def gameEnd(self):
+    def End(self):
         self.canvas.itemconfig("dropButton", state=HIDDEN)
         self.canvas.itemconfig("restart", state=NORMAL)
         self.restart.configure(text="Neustart")
         self.settings.configure(state=NORMAL, cursor="hand2")
 
     # Was passiert, wenn das Spiel gestartet wird
-    def gameStart(self):
+    def Start(self):
         self.canvas.itemconfig("restart", state=HIDDEN)
         self.canvas.itemconfig("dropButton", state=NORMAL)
         self.settings.configure(state=DISABLED, cursor="")
