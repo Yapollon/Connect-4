@@ -15,7 +15,7 @@ class View(ctk.CTk):
     red = ['#fc5858', "#d94c4c", "#fda0a0"]
     yellow = ['#ffef00', "#e6d700", "#FFF9A4"]
     blue = "#0d65a8"
-    grey = ["#f0f0f0", "#cccccc"]
+    grey = ["#f0f0f0", "#cccccc", "#999999"]
 
     def __init__(self, start_callback, game_callback):
         super().__init__()
@@ -30,15 +30,6 @@ class View(ctk.CTk):
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
-
-        ########################## Fenster zentrieren ###########################
-
-        positionRight = int(self.winfo_screenwidth() / 3 - self.winfo_reqwidth() / 2)
-        positionDown = int(self.winfo_screenheight() / 3.2 - self.winfo_reqheight() / 2)
-
-        self.geometry(f"+{positionRight}+{positionDown}")
-
-        ####################################ä####################################
 
     def changeFrame(self, current_frame: Frame, new_frame: Frame):
         current_frame.grid_remove()
@@ -62,7 +53,7 @@ class Game(ctk.CTkFrame):
 
         # Einstellungen Button
         self.photo = PhotoImage(file="images/settings.png")
-        self.settings = ctk.CTkButton(self, width=40, height=40, image=self.photo, text="", command=lambda: parent.changeFrame(self, parent.settings))
+        self.settings = ctk.CTkButton(self, width=40, height=40, image=self.photo, text="", command=lambda: parent.changeFrame(self, parent.settings), fg_color=parent.grey[1], hover_color=parent.grey[2])
         self.canvas.create_window(695, 24, tags="settings", window=self.settings)
 
         # Start/Neustart Button
@@ -77,7 +68,7 @@ class Game(ctk.CTkFrame):
             self.canvas.create_window(position, 70, tags="dropButton", state=HIDDEN, window=self.buttons[i-1])
 
         # Rechteck und Spieler Textfeld
-        self.player = self.canvas.create_text(360, 20, text="", tags="fixed_ratio")
+        self.player = self.canvas.create_text(360, 20, text="", tags="fixed_ratio", font=("", 16))
         self.canvas.create_rectangle(0, 100, 720, 670, fill=View.blue, tags="fluid_ratio")
 
         # Slots

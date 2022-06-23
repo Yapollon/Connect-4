@@ -52,7 +52,7 @@ class Game(Frame):
         self.canvas.pack(fill=BOTH, expand=YES)
 
         # Einstellungen Button
-        self.photo = PhotoImage(file="images/settings30x30.ppm")
+        self.photo = PhotoImage(file="images/settings.png")
         self.settings = Button(self, image=self.photo, cursor="hand2", relief="flat", command=lambda: parent.changeFrame(self, parent.settings))
         self.canvas.create_window(695, 24, tags="settings", window=self.settings)
 

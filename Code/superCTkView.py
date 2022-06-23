@@ -31,15 +31,6 @@ class View(ctk.CTk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
-        ########################## Fenster zentrieren ###########################
-
-        positionRight = int(self.winfo_screenwidth() / 3 - self.winfo_reqwidth() / 2)
-        positionDown = int(self.winfo_screenheight() / 3.2 - self.winfo_reqheight() / 2)
-
-        self.geometry(f"+{positionRight}+{positionDown}")
-
-        ####################################ä####################################
-
     def changeFrame(self, current_frame: Frame, new_frame: Frame):
         current_frame.grid_remove()
         new_frame.grid(row=0, column=0, sticky="nswe")
@@ -53,8 +44,9 @@ class Game(ctk.CTkFrame):
         self.grid(row=0, column=0, sticky="nswe")
 
         self.grid_columnconfigure((0, 1, 2, 3, 4, 5, 6), weight=2)
-        self.grid_rowconfigure((0, 1), weight=1)
-        self.grid_rowconfigure(2, weight=1000)
+        self.grid_rowconfigure(0, weight=2)
+        self.grid_rowconfigure(1, weight=3)
+        self.grid_rowconfigure(2, weight=200)
 
         # Switch für White/Dark-Mode
         self.modeSwitch = ctk.CTkSwitch(master=self, width=35, text="Dark Mode", command=self.change_mode)
@@ -67,35 +59,13 @@ class Game(ctk.CTkFrame):
         # Einstellungen Button
         self.photo = PhotoImage(file="images/settings.png")
         self.settings = ctk.CTkButton(self, width=40, height=40, image=self.photo, text="", command=lambda: parent.changeFrame(self, parent.settings))
-        self.settings.grid(row=0, column=6, padx=5, pady=5, sticky="e")
+        self.settings.grid(row=0, column=6, padx=5, pady=5, sticky="ne")
 
         # Start/Neustart Button
 
-        self.restart = ctk.CTkButton(self, width=140, height=35, corner_radius=10, text="START", fg_color=View.red[0],
-                                     hover_color=View.red[1], command=parent.start_callback)
-        self.restart.grid(row=1, column=0, pady=5, padx=5, sticky="nswe")
-
-        self.restart = ctk.CTkButton(self, width=140, height=35, corner_radius=10, text="START", fg_color=View.red[0],
-                                     hover_color=View.red[1], command=parent.start_callback)
-        self.restart.grid(row=1, column=1, pady=5, padx=5, sticky="nswe")
-
-        self.restart = ctk.CTkButton(self, width=140, height=35, corner_radius=10, text="START", fg_color=View.red[0],
-                                     hover_color=View.red[1], command=parent.start_callback)
-        self.restart.grid(row=1, column=2, pady=5, padx=5, sticky="nswe")
-
-        self.restart = ctk.CTkButton(self, width=140, height=35, corner_radius=10, text="START", fg_color=View.red[0],
-                                     hover_color=View.red[1], command=parent.start_callback)
-        self.restart.grid(row=1, column=3, pady=5, padx=5, sticky="nswe")
-        self.restart = ctk.CTkButton(self, width=140, height=35, corner_radius=10, text="START", fg_color=View.red[0],
-                                     hover_color=View.red[1], command=parent.start_callback)
-        self.restart.grid(row=1, column=4, pady=5, padx=5, sticky="nswe")
-        self.restart = ctk.CTkButton(self, width=140, height=35, corner_radius=10, text="START", fg_color=View.red[0],
-                                     hover_color=View.red[1], command=parent.start_callback)
-        self.restart.grid(row=1, column=5, pady=5, sticky="nswe")
-
-        self.restart = ctk.CTkButton(self, width=140, height=35, corner_radius=10, text="START", fg_color=View.red[0],
-                                     hover_color=View.red[1], command=parent.start_callback)
-        self.restart.grid(row=1, column=6, pady=5, padx=5, sticky="nswe")
+        for x in range(0, 6+1):
+            ctk.CTkButton(self, corner_radius=10, text="▼", fg_color=View.red[0], hover_color=View.red[1], command=parent.start_callback)\
+            .grid(row=1, column=x, pady=5, padx=5, sticky="nswe")
 
     def change_mode(self):
         if self.modeSwitch.get() == 1:

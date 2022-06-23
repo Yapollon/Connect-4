@@ -2,7 +2,7 @@
 
 from random import randint
 from Board import Board
-from superCTkView_Proto import View
+from superView import View
 
 
 class Controller:

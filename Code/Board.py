@@ -42,8 +42,7 @@ class Board:
 
     def changeStatus(self, position: tuple, status):
         try:
-            self.slots[
-                position].status = status  # ändert den Status eines Feldes → der Chip des jeweiligen Spielers besetzt das Feld
+            self.slots[position].status = status  # ändert den Status eines Feldes → der Chip des jeweiligen Spielers besetzt das Feld
         except KeyError:
             print("Position not found!")
 
