@@ -122,7 +122,7 @@ class Game(Frame):
     def flash4(self, coordinates: list, color: list):
         x = 0
         while self.canvas.itemcget("restart", "state") == NORMAL:
-            x = 2 if x == 0 else 0  # Macht das sich x bei jedem loop zwischen 0 und 3 wechselt
+            x = 2 if x == 0 else 0  # Macht das sich x bei jedem loop zwischen 0 und 2 wechselt
             for coordinate in coordinates:
                 self.canvas.itemconfig(self.slots[coordinate], fill=color[x])
             self.canvas.update()
